@@ -1,3 +1,6 @@
+var wins = 0;
+var losses = 0;
+
 $("document").ready(function () {
     var crystalArray = [];
     var sumGuesses = 0;
@@ -13,7 +16,7 @@ $("document").ready(function () {
     $("#match-number").text(matchRand);
 
     for (var i = 0; i < 4; i++) {
-        var crystalRand = Math.floor(Math.random() * 51);
+        var crystalRand = Math.floor(Math.random() * 91) + 10;
         crystalArray.push(crystalRand);
         var button = $("<button>");
         button.attr("id", "button" + i);
@@ -32,11 +35,13 @@ $("document").ready(function () {
 
         if (sumGuesses === matchRand) {
             $("#wins-losses").html("<h1>You won!</h1>");
+            wins++;
             drawReset();
         }
 
         if (sumGuesses > matchRand) {
             $("#wins-losses").html("<h1>You lose!</h1>");
+            losses++;
             drawReset();
         }
     });
