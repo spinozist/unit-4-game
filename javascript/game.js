@@ -1,17 +1,31 @@
-var wins = 0;
-var losses = 0;
+
 
 $("document").ready(function () {
+    var wins = 0;
+    var losses = 0;
     var crystalArray = [];
     var sumGuesses = 0;
-    var matchRand = Math.floor(Math.random() * 251) + 100;
-    var drawReset = function () {
-        resetButton = "<input id='resetButton' type='button' value='Play Again' onClick='window.location.reload()'>";
-        $("#reset-box").html(resetButton);
-        document.onkeydown = function (event) {
-            event.preventDefault();
+    var matchRand = Math.floor(Math.random() * 251) + 100;;
+
+    function writeGuesses(){
+        $("#guess-number").text(sumGuesses);
+    };
+    function writeScore() { 
+        $("#wins-losses").html("<p>Wins: " + wins + "</p><p>Losses: " + losses + "</p>");
+    };
+
+    function resetFunction() {
+        for (var i = 0; i < 4; i++) {
+            var crystalRand = Math.floor(Math.random() * 91) + 10;
+            crystalArray.push(crystalRand);
+            button.attr("id", "button" + i);
+            button.attr("value", crystalRand)
         };
-    }
+        matchRand = Math.floor(Math.random() * 251) + 100;
+        writeGuesses();
+        writeScore();
+        $("#match-number").text(matchRand);
+    };
 
     $("#match-number").text(matchRand);
 
@@ -25,24 +39,22 @@ $("document").ready(function () {
         $("#button-row").append(button);
     }
 
-    $("#guess-number").text(sumGuesses);
-
-    console.log("ready :)");
-
     $("button").on("click", function () {
         sumGuesses = +sumGuesses + +this.value;
-        $("#guess-number").text(sumGuesses);
+        writeGuesses();
 
         if (sumGuesses === matchRand) {
-            $("#wins-losses").html("<h1>You won!</h1>");
+            $("#dialogue").html("<h1>You won!</h1>");
             wins++;
-            drawReset();
+            sumGuesses = 0;
+            resetFunction();
         }
 
         if (sumGuesses > matchRand) {
-            $("#wins-losses").html("<h1>You lose!</h1>");
+            $("#dialogue").html("<h1>You lose!</h1>");
             losses++;
-            drawReset();
+            sumGuesses = 0;
+            resetFunction();
         }
     });
 });
