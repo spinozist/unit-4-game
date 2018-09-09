@@ -7,22 +7,23 @@ $("document").ready(function () {
     var matchRand = Math.floor(Math.random() * 401) + 100;;
 
     function writeGuesses(){
-        $("#guess-number").text(sumGuesses);
+        $("#guess-number").html("<p id='user-e'>" + sumGuesses + "</p>" + "<strong>Your Energy</strong>");
     };
     function writeScore() { 
-        $("#wins-losses").html("<p>Wins: " + wins + "</p><p>Losses: " + losses + "</p>");
+        $("#wins-losses").html("<h2 id='dialogue'></h2>" + "<p>Wins: " + wins + "</p><p>Losses: " + losses + "</p>");
     };
 
     function writeRandom() {
-        $("#match-number").text(matchRand);
+        $("#match-number").html("<p id='univ-e'>" + matchRand + "</p>" + "<strong>Universal Energy</strong>");
     }
 
     function resetFunction() {
         for (var i = 0; i < 4; i++) {
             var crystalRand = Math.floor(Math.random() * 91) + 10;
-            crystalArray.push(crystalRand);
+            crystalArray.splice(i, 1, crystalRand);
             $("button").attr("id", "button" + i);
             $("button").attr("value", crystalRand)
+            console.log(crystalRand);
         };
         matchRand = Math.floor(Math.random() * 401) + 100;
         writeGuesses();
@@ -46,20 +47,21 @@ $("document").ready(function () {
 
     $("button").on("click", function () {
         sumGuesses = +sumGuesses + +this.value;
+        $("#dialogue").text("Pick another crystal.");
         writeGuesses();
 
         if (sumGuesses === matchRand) {
-            $("#dialogue").html("<h1>You won!</h1>");
             wins++;
             sumGuesses = 0;
             resetFunction();
+            $("#dialogue").text("You won! Keep playing.");
         }
 
         if (sumGuesses > matchRand) {
-            $("#dialogue").html("<h1>You lose!</h1>");
             losses++;
             sumGuesses = 0;
             resetFunction();
+            $("#dialogue").text("You lose! Try again.");
         }
     });
 });
