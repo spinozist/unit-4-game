@@ -1,11 +1,10 @@
 
-
 $("document").ready(function () {
     var wins = 0;
     var losses = 0;
     var crystalArray = [];
     var sumGuesses = 0;
-    var matchRand = Math.floor(Math.random() * 251) + 100;;
+    var matchRand = Math.floor(Math.random() * 401) + 100;;
 
     function writeGuesses(){
         $("#guess-number").text(sumGuesses);
@@ -14,20 +13,26 @@ $("document").ready(function () {
         $("#wins-losses").html("<p>Wins: " + wins + "</p><p>Losses: " + losses + "</p>");
     };
 
+    function writeRandom() {
+        $("#match-number").text(matchRand);
+    }
+
     function resetFunction() {
         for (var i = 0; i < 4; i++) {
             var crystalRand = Math.floor(Math.random() * 91) + 10;
             crystalArray.push(crystalRand);
-            button.attr("id", "button" + i);
-            button.attr("value", crystalRand)
+            $("button").attr("id", "button" + i);
+            $("button").attr("value", crystalRand)
         };
-        matchRand = Math.floor(Math.random() * 251) + 100;
+        matchRand = Math.floor(Math.random() * 401) + 100;
         writeGuesses();
         writeScore();
-        $("#match-number").text(matchRand);
+        writeRandom();
     };
 
-    $("#match-number").text(matchRand);
+    writeRandom();
+    writeScore();
+    writeGuesses();
 
     for (var i = 0; i < 4; i++) {
         var crystalRand = Math.floor(Math.random() * 91) + 10;
