@@ -21,8 +21,7 @@ $("document").ready(function () {
         for (var i = 0; i < 4; i++) {
             var crystalRand = Math.floor(Math.random() * 91) + 10;
             crystalArray.splice(i, 1, crystalRand);
-            $("button").attr("id", "button" + i);
-            $("button").attr("value", crystalRand)
+            $("#button" + i).attr("value", crystalRand)
             console.log(crystalRand);
         };
         matchRand = Math.floor(Math.random() * 401) + 100;
@@ -30,10 +29,6 @@ $("document").ready(function () {
         writeScore();
         writeRandom();
     };
-
-    writeRandom();
-    writeScore();
-    writeGuesses();
 
     for (var i = 0; i < 4; i++) {
         var crystalRand = Math.floor(Math.random() * 91) + 10;
@@ -64,6 +59,10 @@ $("document").ready(function () {
             $("#dialogue").text("You lose! Try again.");
         }
     });
+
+    writeRandom();
+    writeScore();
+    writeGuesses();
 });
 
 
