@@ -4,7 +4,7 @@ $("document").ready(function () {
     var losses = 0;
     var crystalArray = [];
     var sumGuesses = 0;
-    var matchRand = Math.floor(Math.random() * 401) + 100;;
+    var matchRand = Math.floor(Math.random() * 101) + 19;;
 
     function writeGuesses(){
         $("#guess-number").html("<p id='user-e'>" + sumGuesses + "</p>" + "<strong>Your Energy</strong>");
@@ -19,19 +19,19 @@ $("document").ready(function () {
 
     function resetFunction() {
         for (var i = 0; i < 4; i++) {
-            var crystalRand = Math.floor(Math.random() * 91) + 10;
+            var crystalRand = Math.floor(Math.random() * 13) + 1;
             crystalArray.splice(i, 1, crystalRand);
             $("#button" + i).attr("value", crystalRand)
             console.log(crystalRand);
         };
-        matchRand = Math.floor(Math.random() * 401) + 100;
+        matchRand = Math.floor(Math.random() * 101) + 19;
         writeGuesses();
         writeScore();
         writeRandom();
     };
 
     for (var i = 0; i < 4; i++) {
-        var crystalRand = Math.floor(Math.random() * 91) + 10;
+        var crystalRand = Math.floor(Math.random() * 13) + 1;
         crystalArray.push(crystalRand);
         var button = $("<button>");
         button.attr("id", "button" + i);
